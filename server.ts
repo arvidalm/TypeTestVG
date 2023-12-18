@@ -39,7 +39,6 @@ app.post('/contact', async (req: Request, res: Response) => {
     const { firstname, lastname, email, personalnumber, address, zipCode, city, country } = req.body;
 
     try {
-        // Validera inkommande data innan du skapar en kontakt
         if (!validateText(firstname) || !validateText(lastname) || !validateText(address) || !validateText(city) || !validateText(country)) {
             return res.status(400).json({ error: 'Invalid input data' });
         }
@@ -93,7 +92,7 @@ app.get('/contact/:id', async (req: Request, res: Response) => {
 
 const port = process.env.PORT || 8080;
 
-mongoose.connect("mongodb://localhost:27017/contactapp").then(() => {
+mongoose.connect("mongodb://localhost:27017").then(() => {
     app.listen(port, () => {
         console.log(`App listening to port ${port}`);
     });
